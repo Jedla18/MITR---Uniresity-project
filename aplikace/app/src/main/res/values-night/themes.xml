@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tmavé okno hned od spuštění, aby v tmavém režimu před prvním snímkem aplikace neblikla bílá. -->
+    <style name="Theme.Domek" parent="android:Theme.Material.NoActionBar" />
+</resources>

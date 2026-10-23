@@ -1,0 +1,548 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=block">
+<style>
+  .dm-gal{display:flex;flex-wrap:wrap;gap:28px 24px;align-items:flex-start;margin-bottom:2.2rem}
+  .dm-shot{width:324px;display:flex;flex-direction:column;gap:10px}
+  .dm-shot.wide{width:684px}
+  .dm-cap h3{font-size:1rem;margin:0 0 .15rem}
+  .dm-cap p{font-size:.85rem;color:var(--text-secondary);line-height:1.45}
+  .dm-h{margin:.5rem 0 1rem}
+  .dm-row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;margin-bottom:2.2rem}
+
+  .app{--a-bg:#F3F6F7;--a-surf:#FFFFFF;--a-surf2:#EAF0F2;--a-on:#161C1F;--a-on2:#59656B;--a-out:#D3DCE0;
+       --a-pri:#0D6A70;--a-pri-c:#CBEDED;--a-on-pri-c:#002F33;--a-heat:#DF522E;--a-cool:#2A77E2;
+       font-family:Roboto,system-ui,sans-serif;color:var(--a-on);font-size:14px;line-height:1.35}
+  .ph,.land{zoom:.8;border:10px solid #15171a;overflow:hidden;display:flex;flex-direction:column;background:var(--a-bg);
+       box-shadow:0 12px 32px rgba(0,0,0,.18);position:relative}
+  .ph{width:404px;height:852px;border-radius:44px}
+  .ph.short{height:660px}
+  .land{width:852px;height:404px;border-radius:40px}
+
+  .app .i{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;font-size:20px;line-height:1;
+       letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;
+       font-feature-settings:'liga';-webkit-font-smoothing:antialiased;
+       font-variation-settings:'FILL' 0,'wght' 450,'GRAD' 0,'opsz' 24;vertical-align:middle}
+  .app .i.f{font-variation-settings:'FILL' 1,'wght' 450,'GRAD' 0,'opsz' 24}
+
+  .sbar{height:30px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px 0 26px;font-size:13px;font-weight:500}
+  .sbar .i{font-size:16px;margin-left:3px}
+  .ab{height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 20px}
+  .ab-t{font-size:21px;font-weight:500}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 9px;border-radius:999px;font-size:12.5px;font-weight:500;white-space:nowrap}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+  .pill.ok{background:#DCF2E4;color:#116137}
+  .pill.srch{background:#E3E9EC;color:#4A565C}
+  .pill.conn{background:#D9ECF7;color:#0B4F75}
+  .pill.stale{background:#FFE7C2;color:#7F4700}
+  .pill.off{background:#FFDAD6;color:#8C0009}
+  .pill.sim{background:#ECE0FF;color:#4B3487}
+
+  .sc{flex:1;overflow-y:auto;padding:4px 12px 16px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+  .cd{background:var(--a-surf);border-radius:22px;padding:14px 16px;box-shadow:0 1px 2px rgba(16,24,28,.06)}
+  .row{display:flex;align-items:center;gap:8px}
+  .sp{justify-content:space-between}
+  .ct{font-size:15px;font-weight:500}
+  .lbl{font-size:12.5px;color:var(--a-on2)}
+  .meta{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:var(--a-on2)}
+  .sun{color:#E0A100}
+  .tag{font-size:12px;font-weight:500;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.8);border:1px solid var(--a-out);color:var(--a-on2)}
+
+  .hero.heat{background:linear-gradient(165deg,#FFE1D5 0%,#FFF4EF 75%);box-shadow:none;border:1px solid #FFD2C2}
+  .hero-mid{display:flex;align-items:flex-end;justify-content:space-between;margin:10px 0 14px}
+  .big{font-size:60px;line-height:1;letter-spacing:-1.5px}
+  .big span{font-size:26px;letter-spacing:0;margin-left:4px;color:var(--a-on2);position:relative;top:-24px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px 7px 10px;border-radius:999px;font-size:14px;font-weight:500}
+  .chip.heat{background:var(--a-heat);color:#fff}
+  .stp{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.85);border-radius:18px;padding:8px}
+  .rb{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--a-surf);border:1px solid var(--a-out);flex:none}
+  .rb .i{font-size:24px}
+  .stp-v{text-align:center}
+  .stp-v .v{font-size:24px;font-weight:500}
+
+  .seg{display:inline-flex;border:1px solid var(--a-out);border-radius:999px;overflow:hidden;font-size:12px;font-weight:500}
+  .seg span{padding:4px 10px;color:var(--a-on2)}
+  .seg span+span{border-left:1px solid var(--a-out)}
+  .seg span.on{background:var(--a-pri-c);color:var(--a-on-pri-c)}
+  .chart{width:100%;height:auto;display:block;margin-top:8px}
+  .lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--a-on2);margin-top:4px}
+  .lg span{display:inline-flex;align-items:center;gap:5px}
+  .lg b{display:inline-block;width:14px;height:3px;border-radius:2px}
+  .lg b.dash{height:0;border-top:2px dashed #2B3237;background:none;border-radius:0}
+  .lg b.sq{width:10px;height:10px;border-radius:3px}
+
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tl{background:var(--a-surf);border-radius:16px;padding:10px 10px 9px;box-shadow:0 1px 2px rgba(16,24,28,.06)}
+  .tl .i{font-size:20px;color:var(--a-pri)}
+  .tl-l{font-size:12px;color:var(--a-on2);margin-top:4px}
+  .tl-v{font-size:18px;font-weight:500;margin-top:1px}
+  .tl-s{font-size:11px;color:var(--a-on2);margin-top:1px}
+
+  .nav{height:80px;flex:none;background:#E7EFF0;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding-bottom:6px}
+  .ni{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:500;color:var(--a-on2)}
+  .nic{width:64px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+  .ni.on{color:var(--a-on)}
+  .ni.on .nic{background:var(--a-pri-c);color:var(--a-on-pri-c)}
+
+  .sum{display:flex;align-items:center;justify-content:space-between}
+  .sum b{font-size:22px;font-weight:500}
+  .segb{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #9FAAB0;border-radius:999px;overflow:hidden;margin-top:10px}
+  .segb span{display:flex;align-items:center;justify-content:center;gap:4px;height:42px;font-size:14px;font-weight:500}
+  .segb span+span{border-left:1px solid #9FAAB0}
+  .segb span.on{background:var(--a-pri-c);color:var(--a-on-pri-c)}
+  .hint{font-size:12.5px;color:var(--a-on2);margin-top:8px;line-height:1.4}
+  .vr{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 8px;border-radius:16px}
+  .vr.act{background:#E2F3F3}
+  .vr-n{font-size:15px;font-weight:500}
+  .vr-s{font-size:12px;color:var(--a-on2);margin-top:1px}
+  .mini{display:flex;align-items:center;gap:6px;flex:none}
+  .mini .rb{width:38px;height:38px}
+  .mini .rb .i{font-size:20px}
+  .mini .v{min-width:68px;text-align:center;font-size:17px;font-weight:500}
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:1px 7px;border-radius:6px;background:var(--a-pri);color:#fff;margin-left:4px}
+  .stline{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:8px 10px;border-radius:12px;background:var(--a-surf2);margin:8px 0 4px}
+
+  .lamp{display:flex;flex-direction:column;align-items:center;padding:2px 0 0}
+  .glow{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+        background:radial-gradient(circle,rgba(100,110,255,.95) 0 27%,rgba(100,110,255,.42) 45%,rgba(100,110,255,0) 70%)}
+  .glow .i{font-size:44px;color:#fff}
+  .lamp-t{font-size:20px;font-weight:500}
+  .lamp-s{font-size:13px;color:var(--a-on2);margin-top:3px;text-align:center;line-height:1.4}
+  .btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .bt{height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:500;background:var(--a-surf2)}
+  .bt.out{background:transparent;border:1px solid #9FAAB0;color:var(--a-pri)}
+  .bt.fill{background:var(--a-pri);color:#fff}
+  .bt.wide{grid-column:1/-1}
+  .sw{display:grid;grid-template-columns:repeat(6,1fr);gap:12px 8px;margin-top:12px;justify-items:center}
+  .sw span{width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,0,0,.1)}
+  .sw span.sel{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--a-pri)}
+  .sw span.rain{background:conic-gradient(#f33,#fd3,#3e5,#3de,#45f,#e3e,#f33)}
+  .sl{position:relative;height:28px;margin-top:6px}
+  .sl .tr{position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:var(--a-pri-c)}
+  .sl .ac{position:absolute;left:0;top:11px;height:6px;border-radius:3px;background:var(--a-pri);width:60%}
+  .sl .th{position:absolute;left:calc(60% - 11px);top:3px;width:22px;height:22px;border-radius:50%;background:var(--a-pri);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .tg{width:52px;height:32px;border-radius:16px;background:var(--a-pri);position:relative;flex:none}
+  .tg::after{content:'';position:absolute;right:4px;top:4px;width:24px;height:24px;border-radius:50%;background:#fff}
+
+  .tlw{position:relative;padding-top:16px;margin-top:4px}
+  .tline{height:24px;border-radius:8px;overflow:hidden;display:flex}
+  .tline span{height:100%}
+  .tmark{position:absolute;top:12px;bottom:-3px;width:3px;margin-left:-1.5px;background:#161C1F;border-radius:2px}
+  .tmark span{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:700;white-space:nowrap}
+  .hrs{display:flex;justify-content:space-between;font-size:10.5px;color:var(--a-on2);margin-top:4px}
+  .tr2{display:flex;align-items:center;gap:10px;padding:8px 0}
+  .tr2+.tr2{border-top:1px solid #EDF1F3}
+  .tr2 .nm{flex:1;font-size:15px}
+  .time{font-size:17px;font-weight:500;padding:5px 12px;border-radius:10px;border:1px solid var(--a-out)}
+  .tb{font-size:13.5px;font-weight:500;color:var(--a-pri);padding:7px 12px;border-radius:999px;background:#E2F3F3}
+  .kv{display:flex;justify-content:space-between;font-size:14px;padding:4px 0}
+  .warn{display:flex;align-items:center;gap:6px;color:#7F4700;background:#FFF0D6;border-radius:12px;padding:8px 10px;font-size:13px;margin:8px 0 10px}
+  .rad{display:flex;align-items:flex-start;gap:12px;padding:8px 0}
+  .rad .o{width:20px;height:20px;border-radius:50%;border:2px solid #6F7A80;flex:none;margin-top:2px;position:relative}
+  .rad .o.on{border-color:var(--a-pri)}
+  .rad .o.on::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--a-pri)}
+  .dev{font-size:12.5px;color:var(--a-on2);background:var(--a-surf2);border-radius:12px;padding:8px 10px;margin:0 0 4px 32px}
+
+  .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 34px;gap:8px}
+  .rings{width:116px;height:116px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--a-pri-c);position:relative;margin-bottom:14px}
+  .rings::before,.rings::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:2px solid #9CD6D6;animation:dmPulse 2.2s ease-out infinite}
+  .rings::after{animation-delay:1.1s}
+  @keyframes dmPulse{from{transform:scale(.8);opacity:1}to{transform:scale(1.3);opacity:0}}
+  .rings .i{font-size:48px;color:var(--a-on-pri-c)}
+  .e-t{font-size:20px;font-weight:500}
+  .e-s{font-size:14px;color:var(--a-on2);line-height:1.45}
+  .prog{width:180px;height:4px;border-radius:2px;background:var(--a-pri-c);overflow:hidden;position:relative;margin:10px 0 14px}
+  .prog::after{content:'';position:absolute;top:0;bottom:0;width:40%;background:var(--a-pri);border-radius:2px;animation:dmSlide 1.4s ease-in-out infinite}
+  @keyframes dmSlide{from{left:-40%}to{left:100%}}
+  .ban{display:flex;gap:10px;align-items:flex-start;border-radius:16px;padding:12px 14px;font-size:13.5px;line-height:1.4}
+  .ban.stale{background:#FFEBCC;color:#5E3500}
+  .ban.err{background:#FFE0DC;color:#6E0008}
+  .ban b{display:block;font-size:14.5px;margin-bottom:2px}
+  .dim{opacity:.42;filter:grayscale(.75);display:flex;flex-direction:column;gap:12px}
+  .snack{position:absolute;left:12px;right:12px;bottom:92px;background:#2B3134;color:#EEF2F3;border-radius:10px;padding:12px 14px;font-size:13.5px;line-height:1.4;display:flex;gap:14px;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .snack b{color:#8FD3D6;font-weight:500;flex:none}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;background:var(--a-bg);padding:14px;border-radius:16px;max-width:520px}
+
+  .lbody{flex:1;display:flex;min-height:0}
+  .rail{width:84px;flex:none;display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:14px;background:#E7EFF0}
+  .rail .ni{gap:3px;font-size:11.5px}
+  .rail .nic{width:56px}
+  .lmain{flex:1;display:flex;flex-direction:column;min-width:0;padding:0 14px 0 16px}
+  .lhead{height:48px;flex:none;display:flex;align-items:center;justify-content:space-between}
+  .lcols{flex:1;display:grid;grid-template-columns:1fr 1.15fr;gap:12px;min-height:0;padding-bottom:12px}
+  .lcol{display:flex;flex-direction:column;gap:10px;overflow-y:auto;scrollbar-width:thin}
+  .cmp .big{font-size:46px}
+  .cmp .big span{font-size:20px;top:-18px}
+  .cmp .hero-mid{margin:6px 0 10px}
+  .cmp .tl{padding:8px 9px 7px}
+  .cmp .tl-v{font-size:16px}
+</style>
+
+<h2>Chytrý dům – návrh obrazovek</h2>
+<p class="subtitle">Telefon na výšku (Galaxy A25), dole čtyři záložky. Obsah telefonů jde posouvat kolečkem myši. Všechny hodnoty jsou vymyšlené.</p>
+
+<div class="dm-gal">
+
+  <!-- ============ 1. PŘEHLED ============ -->
+  <div class="dm-shot">
+    <div class="ph app">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Chytrý dům</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+      <div class="sc">
+        <div class="cd hero heat">
+          <div class="row sp"><span class="meta"><i class="i f sun">light_mode</i>Den · 10:00</span><span class="tag">Režim Auto</span></div>
+          <div class="hero-mid">
+            <div><div class="lbl">Uvnitř</div><div class="big">22,4<span>°C</span></div></div>
+            <span class="chip heat"><i class="i f">local_fire_department</i>Topí</span>
+          </div>
+          <div class="stp">
+            <span class="rb"><i class="i">remove</i></span>
+            <div class="stp-v"><div class="lbl">Denní cíl</div><div class="v">23,0 °C</div></div>
+            <span class="rb"><i class="i">add</i></span>
+          </div>
+        </div>
+
+        <div class="cd">
+          <div class="row sp"><span class="ct">Teploty</span><span class="seg"><span>5 min</span><span>15 min</span><span class="on">Vše</span></span></div>
+          <svg class="chart" viewBox="0 0 330 168">
+            <g transform="translate(26,6)">
+              <rect x="15" y="0" width="10" height="140" fill="#DF522E" opacity=".13"/>
+              <rect x="60" y="0" width="60" height="140" fill="#DF522E" opacity=".13"/>
+              <rect x="135" y="0" width="15" height="140" fill="#DF522E" opacity=".13"/>
+              <rect x="270" y="0" width="30" height="140" fill="#DF522E" opacity=".13"/>
+              <rect x="180" y="0" width="80" height="140" fill="#2A77E2" opacity=".13"/>
+              <g stroke="#E1E7EA" stroke-width="1"><line x1="0" y1="0" x2="300" y2="0"/><line x1="0" y1="46.7" x2="300" y2="46.7"/><line x1="0" y1="93.3" x2="300" y2="93.3"/><line x1="0" y1="140" x2="300" y2="140"/></g>
+              <g font-size="10" fill="#7A858B" text-anchor="end" font-family="Roboto,sans-serif"><text x="-6" y="3.5">26°</text><text x="-6" y="50">24°</text><text x="-6" y="97">22°</text><text x="-6" y="143.5">20°</text></g>
+              <g font-size="10" fill="#7A858B" font-family="Roboto,sans-serif"><text x="0" y="156">−5 min</text><text x="150" y="156" text-anchor="middle">−2,5 min</text><text x="300" y="156" text-anchor="end">teď</text></g>
+              <polyline points="0,98 60,96.8 120,98 180,99.2 240,98 300,98" fill="none" stroke="#9AA4AA" stroke-width="1.6"/>
+              <path d="M0,93.3 H60 V23.3 H180 V116.7 H270 V70 H300" fill="none" stroke="#2B3237" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <polyline points="0,93.3 15,95.7 25,91 40,94.5 50,92.2 60,93.3 120,23.3 135,26.8 150,22.2 165,25.7 180,23.3 260,116.7 270,115.5 298,84" fill="none" stroke="#0D6A70" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="298" cy="84" r="3.5" fill="#0D6A70"/>
+            </g>
+          </svg>
+          <div class="lg"><span><b style="background:#0D6A70"></b>Uvnitř</span><span><b style="background:#9AA4AA"></b>Venku</span><span><b class="dash"></b>Cíl</span><span><b class="sq" style="background:#F6C9BB"></b>Topí</span><span><b class="sq" style="background:#C9DBF7"></b>Chladí</span></div>
+        </div>
+
+        <div class="tiles">
+          <div class="tl"><i class="i">device_thermostat</i><div class="tl-l">Venku</div><div class="tl-v">21,8 °C</div></div>
+          <div class="tl"><i class="i">water_drop</i><div class="tl-l">Vlhkost</div><div class="tl-v">45 %</div></div>
+          <div class="tl"><i class="i">speed</i><div class="tl-l">Tlak</div><div class="tl-v">1013 hPa</div></div>
+          <div class="tl"><i class="i">brightness_6</i><div class="tl-l">Osvětlení</div><div class="tl-v">320 lx</div><div class="tl-s">světlo · práh 50</div></div>
+          <div class="tl"><i class="i">directions_walk</i><div class="tl-l">Pohyb</div><div class="tl-v">Ne</div><div class="tl-s">před 40 s</div></div>
+          <div class="tl"><i class="i f" style="color:#646EFF">lightbulb</i><div class="tl-l">Světlo</div><div class="tl-v">Svítí</div><div class="tl-s">ručně · 60 %</div></div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="ni on"><span class="nic"><i class="i f">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>1 · Přehled</h3><p>Všechno pro předvádění na jednom místě: teplota uvnitř, platný cíl s tlačítky − a +, topí/chladí, denní doba s časem Raspberry, graf a čidla. Karta nahoře při topení zčervená, při chlazení zmodrá. Tlačítka − a + mění vždy ten cíl, který právě platí (ve dne denní, v noci noční, v ručním režimu ruční).</p></div>
+  </div>
+
+  <!-- ============ 2. TERMOSTAT ============ -->
+  <div class="dm-shot">
+    <div class="ph app">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Termostat</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+      <div class="sc">
+        <div class="cd sum">
+          <div><div class="lbl">Uvnitř</div><b>22,4 °C</b></div>
+          <div><div class="lbl">Platný cíl</div><b>23,0 °C</b></div>
+          <span class="chip heat"><i class="i f">local_fire_department</i>Topí</span>
+        </div>
+        <div class="cd">
+          <div class="ct">Režim</div>
+          <div class="segb"><span class="on"><i class="i">check</i>Auto</span><span>Ruční</span><span>Vypnuto</span></div>
+          <div class="hint">Ve dne a večer drží denní cíl, v noci noční. Teď je den, takže platí denní.</div>
+        </div>
+        <div class="cd">
+          <div class="ct" style="margin-bottom:4px">Cílové teploty</div>
+          <div class="vr act"><div><div class="vr-n">Denní</div><div class="vr-s">den a večer<span class="badge">platí teď</span></div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">23,0 °C</span><span class="rb"><i class="i">add</i></span></div></div>
+          <div class="vr"><div><div class="vr-n">Noční</div><div class="vr-s">noc</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">20,0 °C</span><span class="rb"><i class="i">add</i></span></div></div>
+          <div class="vr"><div><div class="vr-n">Ruční</div><div class="vr-s">režim Ruční</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">22,0 °C</span><span class="rb"><i class="i">add</i></span></div></div>
+          <div class="hint">5–35 °C po 0,5 °C. Podržením tlačítka se hodnota mění rychleji, klepnutím na číslo jde napsat přímo.</div>
+        </div>
+        <div class="cd">
+          <div class="ct">Nikdo doma</div>
+          <div class="stline"><i class="i" style="color:var(--a-pri)">person</i>Doma je někdo · poslední pohyb před 40 s</div>
+          <div class="vr"><div><div class="vr-n">Snížit cíl po</div><div class="vr-s">minutách bez pohybu</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">30 min</span><span class="rb"><i class="i">add</i></span></div></div>
+          <div class="vr"><div><div class="vr-n">Snížit o</div><div class="vr-s">0–10 °C</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">3,0 °C</span><span class="rb"><i class="i">add</i></span></div></div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="ni"><span class="nic"><i class="i">space_dashboard</i></span>Přehled</div>
+        <div class="ni on"><span class="nic"><i class="i f">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>2 · Termostat</h3><p>Režim a všechny tři cíle. Ten, který právě platí, je zvýrazněný. Pod nimi „nikdo doma“: po kolika minutách bez pohybu se cíl sníží a o kolik stupňů.</p></div>
+  </div>
+
+  <!-- ============ 3. SVĚTLO ============ -->
+  <div class="dm-shot">
+    <div class="ph app">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Světlo</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+      <div class="sc">
+        <div class="cd">
+          <div class="lamp">
+            <div class="glow"><i class="i f">lightbulb</i></div>
+            <div class="lamp-t">Svítí · ručně</div>
+            <div class="lamp-s">Jas 60 %. Ruční volba platí do 19:00,<br>pak se světlo vrátí do automatiky.</div>
+          </div>
+          <div class="btns">
+            <span class="bt"><i class="i">lightbulb</i>Zapnout</span>
+            <span class="bt"><i class="i">light_off</i>Vypnout</span>
+            <span class="bt"><i class="i">swap_horiz</i>Přepnout</span>
+            <span class="bt out wide"><i class="i">autorenew</i>Vrátit automatiku</span>
+          </div>
+        </div>
+        <div class="cd">
+          <div class="row sp"><span class="ct">Barva</span><span class="lbl">modrá</span></div>
+          <div class="sw">
+            <span style="background:#FFFFFF"></span><span style="background:#FFD9A0"></span><span style="background:#FFC93C"></span><span style="background:#FF8A3D"></span><span style="background:#F44336"></span><span style="background:#FF5FA2"></span>
+            <span style="background:#9B5CFF"></span><span class="sel" style="background:#646EFF"></span><span style="background:#2EC5E8"></span><span style="background:#3DD68C"></span><span style="background:#B5E550"></span><span class="rain"></span>
+          </div>
+          <div class="row sp" style="margin-top:18px"><span class="ct">Jas</span><span class="ct">60 %</span></div>
+          <div class="sl"><span class="tr"></span><span class="ac"></span><span class="th"></span></div>
+          <div class="hint">Výběr barvy nebo jasu světlo rovnou ručně zapne. Poslední kolečko je vlastní barva.</div>
+        </div>
+        <div class="cd">
+          <div class="ct" style="margin-bottom:2px">Automatika</div>
+          <div class="vr"><div><div class="vr-n">Rozsvítit při pohybu</div><div class="vr-s">v noci na chvíli rozsvítí noční světlo</div></div><span class="tg"></span></div>
+          <div class="vr"><div><div class="vr-n">Noční světlo svítí</div><div class="vr-s">5–600 s</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">30 s</span><span class="rb"><i class="i">add</i></span></div></div>
+          <div class="vr"><div><div class="vr-n">Práh šera</div><div class="vr-s">teď venku 320 lx</div></div><div class="mini"><span class="rb"><i class="i">remove</i></span><span class="v">50 lx</span><span class="rb"><i class="i">add</i></span></div></div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="ni"><span class="nic"><i class="i">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni on"><span class="nic"><i class="i f">lightbulb</i></span>Světlo</div>
+        <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>3 · Světlo</h3><p>Náhled skutečné barvy a jasu, tlačítka zapnout, vypnout, přepnout a vrátit automatiku. Barva z předvoleb nebo vlastní, jas (PWM) posuvníkem. V Automatice je nový přepínač rozsvěcení při pohybu, délka nočního světla a práh šera.</p></div>
+  </div>
+
+  <!-- ============ 4. NASTAVENÍ ============ -->
+  <div class="dm-shot">
+    <div class="ph app">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Nastavení</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+      <div class="sc">
+        <div class="cd">
+          <div class="row sp"><span class="ct">Denní doba</span><span class="meta"><i class="i f sun">light_mode</i>teď je den</span></div>
+          <div class="tlw">
+            <div class="tline"><span style="width:29.17%;background:#3E4090"></span><span style="width:50%;background:#F5C451"></span><span style="width:12.5%;background:#EF8A4C"></span><span style="width:8.33%;background:#3E4090"></span></div>
+            <div class="tmark" style="left:41.67%"><span>10:00</span></div>
+          </div>
+          <div class="hrs"><span>0</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
+          <div class="tr2" style="margin-top:4px"><i class="i f sun">light_mode</i><span class="nm">Den od</span><span class="time">07:00</span><span class="tb">Teď</span></div>
+          <div class="tr2"><i class="i f" style="color:#EF8A4C">wb_twilight</i><span class="nm">Večer od</span><span class="time">19:00</span><span class="tb">Teď</span></div>
+          <div class="tr2"><i class="i f" style="color:#3E4090">bedtime</i><span class="nm">Noc od</span><span class="time">22:00</span><span class="tb">Teď</span></div>
+          <div class="hint">„Teď“ posune začátek na aktuální čas Raspberry. Původní časy pak vrátí tlačítko níž.</div>
+          <span class="bt out" style="margin-top:10px;opacity:.45"><i class="i">undo</i>Vrátit původní časy</span>
+        </div>
+        <div class="cd">
+          <div class="ct">Čas Raspberry</div>
+          <div class="kv" style="margin-top:6px"><span class="lbl">Raspberry</span><span>20. 10. 2026 10:00:03</span></div>
+          <div class="kv"><span class="lbl">Telefon</span><span>20. 10. 2026 10:02:15</span></div>
+          <div class="warn"><i class="i">schedule</i>Hodiny Raspberry jdou o 2 min 12 s pozadu.</div>
+          <span class="bt fill"><i class="i">sync</i>Nastavit čas podle telefonu</span>
+        </div>
+        <div class="cd">
+          <div class="ct">Zdroj dat</div>
+          <div class="rad"><span class="o on"></span><div><div class="vr-n">Raspberry přes Bluetooth</div><div class="vr-s">dům „Termostat“</div></div></div>
+          <div class="dev">B8:27:EB:4A:19:C2 · signál −61 dBm · MTU 517</div>
+          <div class="rad"><span class="o"></span><div><div class="vr-n">Simulace</div><div class="vr-s">vymyšlená data, funguje bez Raspberry</div></div></div>
+          <span class="bt out" style="margin-top:8px"><i class="i">bluetooth_disabled</i>Odpojit</span>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="ni"><span class="nic"><i class="i">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni on"><span class="nic"><i class="i f">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>4 · Nastavení</h3><p>Začátky dne, večera a noci s pruhem přes celý den. „Teď“ posune začátek na aktuální čas Raspberry, takže noc jde při předvádění spustit jedním klepnutím a „Vrátit původní časy“ ji zase vrátí. Dál čas Raspberry v porovnání s telefonem a volba zdroje dat: Raspberry, nebo simulace.</p></div>
+  </div>
+</div>
+
+<h3 class="dm-h">Stavy připojení a chyby</h3>
+<div class="dm-gal">
+  <div class="dm-shot">
+    <div class="ph app short">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Chytrý dům</div><span class="pill srch"><span class="dot"></span>Hledám…</span></div>
+      <div class="empty">
+        <div class="rings"><i class="i">bluetooth_searching</i></div>
+        <div class="e-t">Hledám dům „Termostat“</div>
+        <div class="e-s">Raspberry musí být zapnuté a v dosahu.<br>Párování není potřeba.</div>
+        <div class="prog"></div>
+        <span class="bt out" style="padding:0 20px"><i class="i">science</i>Spustit simulaci</span>
+      </div>
+      <div class="nav">
+        <div class="ni on"><span class="nic"><i class="i f">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>Hledání domku</h3><p>Před připojením a po výpadku. Když Raspberry není po ruce, jde rovnou spustit simulaci.</p></div>
+  </div>
+
+  <div class="dm-shot">
+    <div class="ph app short">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Chytrý dům</div><span class="pill stale"><span class="dot"></span>Stará data · 7 s</span></div>
+      <div class="sc">
+        <div class="ban stale"><i class="i">history</i><div><b>Data jsou 7 s stará</b>Raspberry přestalo posílat stav. Hodnoty nemusí odpovídat skutečnosti.</div></div>
+        <div class="dim">
+          <div class="cd hero heat">
+            <div class="row sp"><span class="meta"><i class="i f sun">light_mode</i>Den · 10:00</span><span class="tag">Režim Auto</span></div>
+            <div class="hero-mid">
+              <div><div class="lbl">Uvnitř</div><div class="big">22,4<span>°C</span></div></div>
+              <span class="chip heat"><i class="i f">local_fire_department</i>Topí</span>
+            </div>
+            <div class="stp">
+              <span class="rb"><i class="i">remove</i></span>
+              <div class="stp-v"><div class="lbl">Denní cíl</div><div class="v">23,0 °C</div></div>
+              <span class="rb"><i class="i">add</i></span>
+            </div>
+          </div>
+          <div class="tiles">
+            <div class="tl"><i class="i">device_thermostat</i><div class="tl-l">Venku</div><div class="tl-v">21,8 °C</div></div>
+            <div class="tl"><i class="i">water_drop</i><div class="tl-l">Vlhkost</div><div class="tl-v">45 %</div></div>
+            <div class="tl"><i class="i">speed</i><div class="tl-l">Tlak</div><div class="tl-v">1013 hPa</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="ni on"><span class="nic"><i class="i f">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>Stará data</h3><p>Když 3 s nepřijde žádná zpráva, hodnoty zešednou a nahoře je vidět, jak jsou stará.</p></div>
+  </div>
+
+  <div class="dm-shot">
+    <div class="ph app short">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="ab"><div class="ab-t">Nastavení</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+      <div class="sc">
+        <div class="cd">
+          <div class="row sp"><span class="ct">Denní doba</span><span class="meta"><i class="i f sun">light_mode</i>teď je den</span></div>
+          <div class="tlw">
+            <div class="tline"><span style="width:29.17%;background:#3E4090"></span><span style="width:50%;background:#F5C451"></span><span style="width:12.5%;background:#EF8A4C"></span><span style="width:8.33%;background:#3E4090"></span></div>
+            <div class="tmark" style="left:41.67%"><span>10:00</span></div>
+          </div>
+          <div class="hrs"><span>0</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
+          <div class="tr2" style="margin-top:4px"><i class="i f sun">light_mode</i><span class="nm">Den od</span><span class="time">07:00</span><span class="tb">Teď</span></div>
+          <div class="tr2"><i class="i f" style="color:#EF8A4C">wb_twilight</i><span class="nm">Večer od</span><span class="time">19:00</span><span class="tb">Teď</span></div>
+          <div class="tr2"><i class="i f" style="color:#3E4090">bedtime</i><span class="nm">Noc od</span><span class="time">22:00</span><span class="tb">Teď</span></div>
+        </div>
+      </div>
+      <div class="snack"><span>Raspberry změnu odmítlo: začátek noci 19:00 je stejný jako začátek večera. Nic se nezměnilo.</span><b>OK</b></div>
+      <div class="nav">
+        <div class="ni"><span class="nic"><i class="i">space_dashboard</i></span>Přehled</div>
+        <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+        <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+        <div class="ni on"><span class="nic"><i class="i f">settings</i></span>Nastavení</div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>Odmítnutý zápis</h3><p>Aplikace napíše, co poslala a proč to Raspberry nejspíš odmítlo, a na obrazovce nechá skutečný stav z Raspberry.</p></div>
+  </div>
+</div>
+
+<div class="dm-row">
+  <div class="app">
+    <div class="lbl" style="margin-bottom:6px">Stav připojení v horní liště</div>
+    <div class="pills">
+      <span class="pill ok"><span class="dot"></span>Připojeno</span>
+      <span class="pill srch"><span class="dot"></span>Hledám…</span>
+      <span class="pill conn"><span class="dot"></span>Připojuji…</span>
+      <span class="pill stale"><span class="dot"></span>Stará data · 7 s</span>
+      <span class="pill off"><span class="dot"></span>Odpojeno · znovu za 4 s</span>
+      <span class="pill sim"><span class="dot"></span>Simulace</span>
+    </div>
+  </div>
+  <div class="app" style="max-width:380px">
+    <div class="lbl" style="margin-bottom:6px">Chyba hlášená z Raspberry (nahoře na Přehledu)</div>
+    <div class="ban err"><i class="i">error</i><div><b>Čidlo osvětlení (BH1750) neodpovídá</b>Hodnota osvětlení chybí, ostatní funguje.</div></div>
+  </div>
+</div>
+
+<h3 class="dm-h">Na šířku a na tabletu</h3>
+<div class="dm-gal">
+  <div class="dm-shot wide">
+    <div class="land app">
+      <div class="sbar"><span>10:02</span><span><i class="i">signal_cellular_alt</i><i class="i">wifi</i><i class="i">battery_5_bar</i></span></div>
+      <div class="lbody">
+        <div class="rail">
+          <div class="ni on"><span class="nic"><i class="i f">space_dashboard</i></span>Přehled</div>
+          <div class="ni"><span class="nic"><i class="i">thermostat</i></span>Termostat</div>
+          <div class="ni"><span class="nic"><i class="i">lightbulb</i></span>Světlo</div>
+          <div class="ni"><span class="nic"><i class="i">settings</i></span>Nastavení</div>
+        </div>
+        <div class="lmain">
+          <div class="lhead"><div class="ab-t">Chytrý dům</div><span class="pill ok"><span class="dot"></span>Připojeno</span></div>
+          <div class="lcols">
+            <div class="lcol cmp">
+              <div class="cd hero heat">
+                <div class="row sp"><span class="meta"><i class="i f sun">light_mode</i>Den · 10:00</span><span class="tag">Režim Auto</span></div>
+                <div class="hero-mid">
+                  <div><div class="lbl">Uvnitř</div><div class="big">22,4<span>°C</span></div></div>
+                  <span class="chip heat"><i class="i f">local_fire_department</i>Topí</span>
+                </div>
+                <div class="stp">
+                  <span class="rb"><i class="i">remove</i></span>
+                  <div class="stp-v"><div class="lbl">Denní cíl</div><div class="v">23,0 °C</div></div>
+                  <span class="rb"><i class="i">add</i></span>
+                </div>
+              </div>
+              <div class="tiles">
+                <div class="tl"><i class="i">device_thermostat</i><div class="tl-l">Venku</div><div class="tl-v">21,8 °C</div></div>
+                <div class="tl"><i class="i">water_drop</i><div class="tl-l">Vlhkost</div><div class="tl-v">45 %</div></div>
+                <div class="tl"><i class="i">speed</i><div class="tl-l">Tlak</div><div class="tl-v">1013 hPa</div></div>
+                <div class="tl"><i class="i">brightness_6</i><div class="tl-l">Osvětlení</div><div class="tl-v">320 lx</div></div>
+                <div class="tl"><i class="i">directions_walk</i><div class="tl-l">Pohyb</div><div class="tl-v">Ne</div></div>
+                <div class="tl"><i class="i f" style="color:#646EFF">lightbulb</i><div class="tl-l">Světlo</div><div class="tl-v">Svítí</div></div>
+              </div>
+            </div>
+            <div class="lcol">
+              <div class="cd">
+                <div class="row sp"><span class="ct">Teploty</span><span class="seg"><span>5 min</span><span>15 min</span><span class="on">Vše</span></span></div>
+                <svg class="chart" viewBox="0 0 330 168">
+                  <g transform="translate(26,6)">
+                    <rect x="15" y="0" width="10" height="140" fill="#DF522E" opacity=".13"/>
+                    <rect x="60" y="0" width="60" height="140" fill="#DF522E" opacity=".13"/>
+                    <rect x="135" y="0" width="15" height="140" fill="#DF522E" opacity=".13"/>
+                    <rect x="270" y="0" width="30" height="140" fill="#DF522E" opacity=".13"/>
+                    <rect x="180" y="0" width="80" height="140" fill="#2A77E2" opacity=".13"/>
+                    <g stroke="#E1E7EA" stroke-width="1"><line x1="0" y1="0" x2="300" y2="0"/><line x1="0" y1="46.7" x2="300" y2="46.7"/><line x1="0" y1="93.3" x2="300" y2="93.3"/><line x1="0" y1="140" x2="300" y2="140"/></g>
+                    <g font-size="10" fill="#7A858B" text-anchor="end" font-family="Roboto,sans-serif"><text x="-6" y="3.5">26°</text><text x="-6" y="50">24°</text><text x="-6" y="97">22°</text><text x="-6" y="143.5">20°</text></g>
+                    <g font-size="10" fill="#7A858B" font-family="Roboto,sans-serif"><text x="0" y="156">−5 min</text><text x="150" y="156" text-anchor="middle">−2,5 min</text><text x="300" y="156" text-anchor="end">teď</text></g>
+                    <polyline points="0,98 60,96.8 120,98 180,99.2 240,98 300,98" fill="none" stroke="#9AA4AA" stroke-width="1.6"/>
+                    <path d="M0,93.3 H60 V23.3 H180 V116.7 H270 V70 H300" fill="none" stroke="#2B3237" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <polyline points="0,93.3 15,95.7 25,91 40,94.5 50,92.2 60,93.3 120,23.3 135,26.8 150,22.2 165,25.7 180,23.3 260,116.7 270,115.5 298,84" fill="none" stroke="#0D6A70" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="298" cy="84" r="3.5" fill="#0D6A70"/>
+                  </g>
+                </svg>
+                <div class="lg"><span><b style="background:#0D6A70"></b>Uvnitř</span><span><b style="background:#9AA4AA"></b>Venku</span><span><b class="dash"></b>Cíl</span><span><b class="sq" style="background:#F6C9BB"></b>Topí</span><span><b class="sq" style="background:#C9DBF7"></b>Chladí</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dm-cap"><h3>Na šířku</h3><p>Záložky se přesunou do lišty vlevo a karty se rozloží do dvou sloupců. Stejně se aplikace chová na tabletu, jen má víc místa.</p></div>
+  </div>
+</div>
