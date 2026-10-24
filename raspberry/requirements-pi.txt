@@ -1,0 +1,8 @@
+# Knihovny pro Raspberry. Instaluje je deploy/instaluj.sh do virtualniho prostredi.
+# gpiozero, dbus a gi se instaluji z apt, viz deploy/instaluj.sh.
+# bluezero je pripnute na verzi 0.9.1: domek/ble_server.py upravuje jeho vnitrek podle zdrojaku
+# teto verze. Pred zmenou verze nejdriv zkontroluj, jestli tam ty upravy porad sedi.
+bluezero==0.9.1
+smbus2
+RPi.bme280
+luma.oled

@@ -6,6 +6,6 @@ a jako periferie Bluetooth LE ho zpřístupňuje mobilní aplikaci pro Android.
 | Složka | Obsah |
 |---|---|
 | `aplikace/` | mobilní aplikace pro Android (Kotlin, Jetpack Compose), návod je v `aplikace/README.md` |
+| `raspberry/` | program pro Raspberry Pi (Python): čidla, termostat, světlo, displej a Bluetooth LE server; návod je v `raspberry/README.md`, popis rozhraní v `raspberry/docs/ble-rozhrani.md` |
 
-Program pro Raspberry Pi patří do vlastní složky vedle aplikace.
 Dokumentace projektu (LaTeX, Overleaf) je v repozitáři https://github.com/Jedla18/MIT---Projekt.
